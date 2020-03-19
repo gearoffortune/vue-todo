@@ -9,26 +9,26 @@
 
 <script>
 export default {
-    props: {
-        text: String,
-        id: Number,
-        isComplete: Boolean
+  props: {
+    text: String,
+    id: Number,
+    isComplete: Boolean,
+  },
+  data() {
+    return {
+      editableText: '',
+    };
+  },
+  methods: {
+    onCancel() {
+      this.$emit('editing-canceled');
     },
-    data: function() {
-        return {
-            editableText: ''
-        }
+    onEdit() {
+      this.$emit('todo-edited', { id: this.id, newText: this.editableText });
     },
-    methods: {
-        onCancel: function() {
-            this.$emit('editing-canceled')
-        },
-        onEdit: function() {
-            this.$emit('todo-edited', {id: this.id, newText: this.editableText})
-        }
-    },
-    beforeMount: function() {
-        this.editableText = this.text
-    }
-}
+  },
+  beforeMount() {
+    this.editableText = this.text;
+  },
+};
 </script>

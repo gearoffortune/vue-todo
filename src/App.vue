@@ -1,5 +1,4 @@
 
-
 <template>
   <div id="app">
     <NewTodo @new-todo="onNewTodo"/>
@@ -32,52 +31,56 @@
 
 <script>
 import NewTodo from './NewTodo.vue';
-import Todo from './Todo';
-import EditModal from './EditModal';
-import DeleteModal from './DeleteModal';
+import Todo from './Todo.vue';
+import EditModal from './EditModal.vue';
+import DeleteModal from './DeleteModal.vue';
 
 export default {
   name: 'app',
-  data () {
+  data() {
     return {
       todos: [],
       isBeingRemoved: false,
       isBeingEdited: false,
       idChanged: -1,
-      idRemoved: -1
-    }
+      idRemoved: -1,
+    };
   },
   components: {
     NewTodo,
     Todo,
     EditModal,
-    DeleteModal
+    DeleteModal,
   },
   methods: {
-    onNewTodo: function(newTodoText){
-      this.todos.push({text: newTodoText, timestamp: Date.now(), id: this.todos.length, isComplete: false})
+    onNewTodo(newTodoText) {
+      this.todos.push({
+        text: newTodoText, timestamp: Date.now(), id: this.todos.length, isComplete: false,
+      });
     },
-    onCheckedTodo: function(todoIndexChanged) {
+    onCheckedTodo(todoIndexChanged) {
       this.todos[todoIndexChanged].isComplete = !this.todos[todoIndexChanged].isComplete;
     },
-    onUpdatedTodo: function({id, newText}){
-      this.todos[id] = {text: newText, timestamp: Date.now(), id, isComplete: false};
+    onUpdatedTodo({ id, newText }) {
+      this.todos[id] = {
+        text: newText, timestamp: Date.now(), id, isComplete: false,
+      };
       this.isBeingEdited = false;
     },
-    onTodoDeletion: function(id){
-      this.todos = this.todos.filter(x => x.id!==id);
+    onTodoDeletion(id) {
+      this.todos = this.todos.filter((x) => x.id !== id);
       this.isBeingRemoved = false;
     },
-    createModalChange: function(id) {
+    createModalChange(id) {
       this.idChanged = id;
       this.isBeingEdited = true;
     },
-    createModalDelete: function(id) {
+    createModalDelete(id) {
       this.idRemoved = id;
       this.isBeingRemoved = true;
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style>

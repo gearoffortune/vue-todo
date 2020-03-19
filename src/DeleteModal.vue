@@ -8,18 +8,18 @@
 
 <script>
 export default {
-    props: {
-        text: String,
-        id: Number
+  props: {
+    text: String,
+    id: Number,
+  },
+  methods: {
+    removeTodo() {
+      this.$emit('todo-remove', this.id);
     },
-    methods: {
-        removeTodo: function() {
-            this.$emit('todo-remove', this.id)
-        },
 
-        onCancel: function() {
-            this.$emit('deletion-canceled')
-        }
-    }
-}
+    onCancel() {
+      this.$emit('deletion-canceled');
+    },
+  },
+};
 </script>

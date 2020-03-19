@@ -7,15 +7,15 @@
 
 <script>
 export default {
-    data: function(){
-        return {
-            inputText: ''
-        }
+  data() {
+    return {
+      inputText: '',
+    };
+  },
+  methods: {
+    onAddTodo() {
+      this.$emit('new-todo', this.inputText);
     },
-    methods: {
-        onAddTodo: function(){
-            this.$emit('new-todo', this.inputText);
-        }
-    }
-}
+  },
+};
 </script>

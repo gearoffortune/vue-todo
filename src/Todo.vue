@@ -9,29 +9,29 @@
 
 <script>
 export default {
-    props: {
-        text: String,
-        timestamp: Number,
-        id: Number,
-        isComplete: Boolean
-    },
-    data: function() {
-        return {
+  props: {
+    text: String,
+    timestamp: Number,
+    id: Number,
+    isComplete: Boolean,
+  },
+  data() {
+    return {
 
-        }
+    };
+  },
+  methods: {
+    onChecked() {
+      this.$emit('todo-checked', this.id);
     },
-    methods: {
-        onChecked: function() {
-            this.$emit('todo-checked', this.id)
-        },
-        onEdit: function() {
-            this.$emit('modal-change', this.id)
-        },
-        onRemove: function() {
-            this.$emit('modal-remove', this.id)
-        }
-    }
-}
+    onEdit() {
+      this.$emit('modal-change', this.id);
+    },
+    onRemove() {
+      this.$emit('modal-remove', this.id);
+    },
+  },
+};
 </script>
 
 <style>
